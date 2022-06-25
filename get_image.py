@@ -8,7 +8,6 @@ def get_image(api_key,lon,lat,zoom=19):
     Extract a marked location from a map using the Google Maps API.
 
     Args:
-        url(str): Google Maps API
         api_key(str): access key
         lon(str or int): degrees of longitude
         lat(str or int): degrees of latitude
