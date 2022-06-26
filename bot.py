@@ -9,6 +9,7 @@ import os
 api_key = 'AIzaSyBLBcUMyC8AhgwU9JyarSFKhMy3dGbpIGQ'
 
 from get_image import get_image
+from preprocess import preprocess
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(
@@ -23,6 +24,7 @@ def get_location(update: Update, context: CallbackContext) -> None:
     latitude = update.message.location.latitude 
     
     image = get_image(api_key,longitude,latitude,19)
+    image = preprocess(image)
     image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
     cv2.imwrite('map.png', image)
     image = open('map.png', 'rb')
