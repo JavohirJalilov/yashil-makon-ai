@@ -14,7 +14,7 @@ def get_image(api_key,lon,lat,zoom=19):
     Returns:
         numpyArray: image
     """
-    url = f"https://maps.googleapis.com/maps/api/staticmap?center={lat},{lon}&zoom={zoom}&size=400x400&maptype=hybrid&key={api_key}"
+    url = f"https://maps.googleapis.com/maps/api/staticmap?center={lat},{lon}&zoom={zoom}&size=400x400&maptype=satellite&key={api_key}"
 
     response = requests.get(url).content
     image = Image.open(io.BytesIO(response)).convert()
