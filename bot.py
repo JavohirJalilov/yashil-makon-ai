@@ -23,10 +23,10 @@ def get_location(update: Update, context: CallbackContext) -> None:
     latitude = update.message.location.latitude 
     
     image = get_image(api_key,longitude,latitude,19)
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
     cv2.imwrite('map.png', image)
     image = open('map.png', 'rb')
     os.remove('map.png')
-
     bot.send_photo(chat_id=chat_id, photo=image)
     
 
