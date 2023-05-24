@@ -18,7 +18,7 @@ def getInfo():
 @app.route('/set')
 def setWebhook():
     
-    HOOK_URL = 'https://yashilmakonai.pythonanywhere.com/'
+    HOOK_URL = 'https://yashilmakonai.pythonanywhere.com'
     hook_bool = bot.setWebhook(url=HOOK_URL)
     return str(hook_bool)
 
