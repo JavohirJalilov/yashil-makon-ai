@@ -8,9 +8,9 @@ def kernel(n,m):
     return kernel
 
 def preprocess(image):
-    h_min, h_max = 45, 70
-    s_min, s_max = 30, 180
-    v_min, v_max = 30, 100
+    h_min, h_max = 50, 90
+    s_min, s_max = 13, 255
+    v_min, v_max = 30, 140
 
     image = cv2.GaussianBlur(image,(5,5),0)
     imgHSV = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
@@ -40,8 +40,10 @@ def preprocess(image):
         area = cv2.contourArea(cnt)
         perimeter = cv2.arcLength(cnt,True)
         x,y,w,h = cv2.boundingRect(cnt)
-        img1 = cv2.rectangle(img1,(x,y),(x+w,y+h),(255,0,0),2)
-    
+        img1 = cv2.rectangle(img1,(x,y),(x+w,y+h),(231, 76, 60),2)
+    # put text top left corner count countours
+    img1 = cv2.putText(img1, f'count trees: {len(contours)}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (46, 204, 113), 2, cv2.LINE_AA)
+
     H, W, CH = img1.shape
     split_image = np.full((H, 10,CH), 255, dtype=np.uint8)
 
