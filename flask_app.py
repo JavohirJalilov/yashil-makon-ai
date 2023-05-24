@@ -13,7 +13,7 @@ bot = Bot(TOKEN)
 def getInfo():
 
     info = bot.get_webhook_info()
-    return info.to_json()
+    return jsonify(info.to_json())
 
 @app.route('/set')
 def setWebhook():
