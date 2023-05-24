@@ -15,6 +15,7 @@ def getInfo():
     info = bot.get_webhook_info()
     return jsonify(info)
 
+
 @app.route('/set')
 def setWebhook():
     
@@ -22,12 +23,14 @@ def setWebhook():
     hook_bool = bot.setWebhook(url=HOOK_URL)
     return str(hook_bool)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def main():
 
-    dp = Dispatcher(bot, None, workers=1)
+    if request.method == "GET":
+        return TOKEN
 
     if request.method == "POST":
+        dp = Dispatcher(bot, None, workers=1)
         update = telegram.Update.de_json(request.get_json(force=True), bot)
 
         dp.add_handler(CommandHandler('start', start))
