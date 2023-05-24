@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import cv2
 import os
-
-
-api_key = 'AIzaSyAGbq62NbISl1Z5of3rchhA_dG_HYmGfQs'
+from settings import TOKEN, api_key
 
 from get_image import get_image
 from preprocess import preprocess
@@ -32,7 +30,7 @@ def get_location(update: Update, context: CallbackContext) -> None:
     bot.send_photo(chat_id=chat_id, photo=image)
     
 
-updater = Updater('1925798170:AAEhdke3ALP-riQJ2diNyoQWkUSWLWeTm1o')
+updater = Updater(TOKEN)
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(MessageHandler(Filters.location, get_location))
